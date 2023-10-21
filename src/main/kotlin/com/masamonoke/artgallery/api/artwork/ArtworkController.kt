@@ -1,10 +1,13 @@
-package com.masamonoke.artgallery.api
+package com.masamonoke.artgallery.api.artwork
 
-import com.masamonoke.artgallery.api.service.ArtworkService
+import com.masamonoke.artgallery.decodeToken
 import com.masamonoke.artgallery.entities.Artwork
+import com.masamonoke.artgallery.getTokenFromHeader
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RequestHeader
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
@@ -16,8 +19,10 @@ class ArtworkController (val artworkService: ArtworkService) {
         return artworkService.getArtwork()
     }
 
-    @PostMapping
-    fun saveArtwork(@RequestBody artwork: Artwork) {
-        artworkService.save(artwork)
+    @PostMapping("/save")
+    fun saveArtwork(@RequestBody request: Map<String, String>, @RequestHeader("Authorization") header: String): ResponseEntity<String> {
+        val token = getTokenFromHeader(header)
+        val username = decodeToken(token)["sub"]
+        return artworkService.save(request, username)
     }
 }

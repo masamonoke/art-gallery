@@ -1,4 +1,4 @@
-package com.masamonoke.artgallery.api.service
+package com.masamonoke.artgallery.api.auth
 
 import com.masamonoke.artgallery.api.auth.AuthenticationRequest
 import com.masamonoke.artgallery.api.auth.AuthenticationResponse
@@ -34,7 +34,7 @@ class AuthenticationService(
     fun authenticate(request: AuthenticationRequest): AuthenticationResponse? {
         val authToken = UsernamePasswordAuthenticationToken(request.name, request.password)
         authenticationManager.authenticate(authToken)
-        val user = userRepo.findByName(request.name)
+        val user = userRepo.findByName(request.name) ?: return null
         val token = jwtService.generateToken(user)
         return AuthenticationResponse(token)
     }

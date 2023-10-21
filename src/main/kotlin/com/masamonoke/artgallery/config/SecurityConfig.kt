@@ -20,7 +20,7 @@ class SecurityConfig(val jwtAuthFilter: JwtAuthFilter, val authenticationProvide
             .csrf { obj: CsrfConfigurer<HttpSecurity> -> obj.disable() }
             .authorizeHttpRequests {
                 it
-                .requestMatchers("/api/v1/auth/**")
+                .requestMatchers("/api/v1/auth/**", "/artwork")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
