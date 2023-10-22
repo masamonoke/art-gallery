@@ -11,4 +11,5 @@ interface ArtistRepo: JpaRepository<Artist, Int> {
         where u.name = :username
     """)
     fun findByUsername(username: String): Artist?
+    fun findByNickname(nickname: String): Artist?
 }

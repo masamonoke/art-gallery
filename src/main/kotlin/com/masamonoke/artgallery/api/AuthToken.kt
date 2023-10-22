@@ -1,4 +1,4 @@
-package com.masamonoke.artgallery
+package com.masamonoke.artgallery.api
 
 import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.databind.ObjectMapper

@@ -1,8 +1,5 @@
 package com.masamonoke.artgallery.api.auth
 
-import com.masamonoke.artgallery.api.auth.AuthenticationRequest
-import com.masamonoke.artgallery.api.auth.AuthenticationResponse
-import com.masamonoke.artgallery.api.auth.RegisterRequest
 import com.masamonoke.artgallery.config.jwt.JwtService
 import com.masamonoke.artgallery.entities.user.Role
 import com.masamonoke.artgallery.entities.user.User

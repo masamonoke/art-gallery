@@ -1,5 +1,7 @@
 package com.masamonoke.artgallery.entities.user
 
+import com.fasterxml.jackson.annotation.JsonIgnore
+import com.masamonoke.artgallery.entities.Artist
 import jakarta.persistence.*
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
@@ -13,9 +15,13 @@ data class User (
     val id: Int? = null,
     val name: String? = null,
     val email: String? = null,
+    @JsonIgnore
     private val password: String? = null,
     @Enumerated(EnumType.STRING)
-    val role: Role? = null
+    val role: Role? = null,
+    @OneToMany
+    @JsonIgnore
+    val subscriptions: MutableSet<Artist>? = HashSet()
 ) : UserDetails
 {
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
@@ -44,5 +50,25 @@ data class User (
 
     override fun isEnabled(): Boolean {
         return true
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as User
+
+        if (name != other.name) return false
+        if (email != other.email) return false
+        if (role != other.role) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = name?.hashCode() ?: 0
+        result = 31 * result + (email?.hashCode() ?: 0)
+        result = 31 * result + (role?.hashCode() ?: 0)
+        return result
     }
 }

@@ -1,8 +1,8 @@
 package com.masamonoke.artgallery.api.artwork
 
-import com.masamonoke.artgallery.decodeToken
+import com.masamonoke.artgallery.api.decodeToken
 import com.masamonoke.artgallery.entities.Artwork
-import com.masamonoke.artgallery.getTokenFromHeader
+import com.masamonoke.artgallery.api.getTokenFromHeader
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping

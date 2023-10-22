@@ -1,5 +1,6 @@
 package com.masamonoke.artgallery.entities
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.masamonoke.artgallery.entities.user.User
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
@@ -19,5 +20,22 @@ data class Artist (
     val user: User,
     val nickname: String,
     @OneToMany
-    val artworks: Set<Artwork>? = null
-)
+    @JsonIgnore
+    val artworks: Set<Artwork>? = null,
+    @OneToMany
+    @JsonIgnore
+    val subscribers: MutableSet<User>? = HashSet()
+) {
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Artist
+
+        return nickname == other.nickname
+    }
+
+    override fun hashCode(): Int {
+        return nickname.hashCode()
+    }
+}
