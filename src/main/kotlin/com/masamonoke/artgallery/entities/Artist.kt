@@ -2,13 +2,7 @@ package com.masamonoke.artgallery.entities
 
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.masamonoke.artgallery.entities.user.User
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.Id
-import jakarta.persistence.JoinColumn
-import jakarta.persistence.ManyToOne
-import jakarta.persistence.OneToMany
-import jakarta.persistence.OneToOne
+import jakarta.persistence.*
 
 @Entity
 data class Artist (
@@ -18,6 +12,7 @@ data class Artist (
     @OneToOne
     @JoinColumn(name = "user_id")
     val user: User,
+    @Column(unique = true)
     val nickname: String,
     @OneToMany
     @JsonIgnore
