@@ -1,6 +1,6 @@
 package com.masamonoke.artgallery.api.artist
 
-import com.masamonoke.artgallery.api.getUserFromHeader
+import com.masamonoke.artgallery.api.getUsernameFromHeader
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
@@ -13,6 +13,6 @@ import org.springframework.web.bind.annotation.RestController
 class ArtistController(val artistService: ArtistService) {
     @PostMapping("/subscribe/{artistNickname}")
     fun subscribe(@RequestHeader("Authorization") header: String, @PathVariable artistNickname: String): ResponseEntity<String>? {
-        return getUserFromHeader(header)?.let { artistService.subscribe(it, artistNickname) }
+        return getUsernameFromHeader(header)?.let { artistService.subscribe(it, artistNickname) }
     }
 }

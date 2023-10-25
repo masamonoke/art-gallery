@@ -1,5 +1,6 @@
 package com.masamonoke.artgallery.entities
 
+import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.Id
@@ -13,8 +14,11 @@ data class Artwork (
         @GeneratedValue
         var id: Int? = null,
         var created: Date? = null,
+        @Column(unique = true)
         var name: String,
         @ManyToOne
         @JoinColumn(name = "artist_id")
-        val author: Artist
+        val author: Artist,
+        val path: String,
+        val title: String? = null
 )
