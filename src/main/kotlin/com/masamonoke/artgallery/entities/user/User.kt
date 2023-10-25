@@ -13,7 +13,9 @@ data class User (
     @Id
     @GeneratedValue
     val id: Int? = null,
+    @Column(unique = true)
     val name: String? = null,
+    @Column(unique = true)
     val email: String? = null,
     @JsonIgnore
     private val password: String? = null,
