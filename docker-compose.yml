@@ -1,14 +1,37 @@
 version: "3.7"
 
 services:
+  backend:
+    container_name: project-backend
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - DB_SERVER=postgresdb
+    links:
+      - postgresdb
+    depends_on:
+      - postgresdb
+    networks:
+      - net
 
-  postgres:
-    container_name: 'art-gallery-postgres'
+  postgresdb:
+    container_name: 'project-db'
     image: 'postgres:11.2'
     restart: always
+    volumes:
+      - ./db_data:/var/lib/mysql
     ports:
-      - '5433:5432'
+      - '5432:5432'
     environment:
       - 'POSTGRES_USER=username'
       - 'POSTGRES_DB=art-gallery'
       - 'POSTGRES_PASSWORD=password'
+    networks:
+      - net
+
+volumes:
+  db_data:
+
+networks:
+  net: {}
