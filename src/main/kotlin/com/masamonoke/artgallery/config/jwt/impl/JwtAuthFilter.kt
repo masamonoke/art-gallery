@@ -1,4 +1,4 @@
-package com.masamonoke.artgallery.config.jwt
+package com.masamonoke.artgallery.config.jwt.impl
 
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest

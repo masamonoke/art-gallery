@@ -1,5 +1,6 @@
 package com.masamonoke.artgallery.api.auth
 
+import com.masamonoke.artgallery.api.auth.impl.AuthenticationService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
