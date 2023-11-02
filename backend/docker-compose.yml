@@ -19,8 +19,6 @@ services:
     container_name: 'project-db'
     image: 'postgres:11.2'
     restart: always
-    volumes:
-      - ./db_data:/var/lib/mysql
     ports:
       - '5433:5432'
     environment:

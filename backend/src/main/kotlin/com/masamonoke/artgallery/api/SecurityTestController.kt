@@ -10,6 +10,6 @@ import org.springframework.web.bind.annotation.RestController
 class SecurityTestController {
     @GetMapping
     fun test(): ResponseEntity<String> {
-        return ResponseEntity.ok("Hello from secured endpoint")
+        return ResponseEntity.ok("Hello from secured")
     }
 }
